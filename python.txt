@@ -1,0 +1,16 @@
+import json
+import boto3
+import logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO) def
+lambda_handler(event, context):
+bucket_name = event['Records'][0]['s3']['bucket']['name']
+object_key = event['Records'][0]['s3']['object']['key']
+logger.info(f"An Image has been added to {bucket_name} with key:
+{object_key}")
+return {
+'statusCode': 200,
+'body': json.dumps(f"Logged: An Image has been added to
+{bucket_name} with
+key: {object_key}")
+}
